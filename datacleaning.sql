@@ -25,15 +25,15 @@ where row_num > 1;
 SELECT *,
     ROW_NUMBER() 
     OVER(PARTITION BY 
-					 company,
-					 industry,
+		     company,
+		     industry,
                      total_laid_off,
                      percentage_laid_off,
                      `date`,
                       stage,
                      country,
                      funds_raised
-		) AS row_num
+	) AS row_num
 FROM layoffs_sandbox;
 
 WITH duplicate_CTE AS
@@ -42,15 +42,15 @@ SELECT
 	*,
     ROW_NUMBER() 
     OVER(PARTITION BY 
-					 company,
-					 industry,
+		     company,
+		     industry,
                      total_laid_off,
                      percentage_laid_off,
                      `date`,
                      stage,
                      country,
                      funds_raised
-		) AS row_num
+	) AS row_num
 FROM layoffs_sandbox
 )
 SELECT *
@@ -76,15 +76,15 @@ INSERT INTO layoffs_sandbox2
 SELECT *,
     ROW_NUMBER() 
     OVER(PARTITION BY 
-					 company,
-					 industry,
+		     company,
+		     industry,
                      total_laid_off,
                      percentage_laid_off,
                      `date`,
-					 stage,
+		     stage,
                      country,
                      funds_raised
-		) AS row_num
+	) AS row_num
 FROM layoffs_sandbox;
 
 -- deleting duplicate rows
@@ -123,8 +123,4 @@ AND percentage_laid_off IS NULL;
 
 ALTER TABLE layoffs_sandbox2
 DROP COLUMN row_num;
-	
-    
-select count(company)
-from layoffs;
 
